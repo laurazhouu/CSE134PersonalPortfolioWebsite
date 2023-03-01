@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laura's Personal Portfolio</title>
+    <link rel="icon" href="sakura.png">
+    <link rel="stylesheet" href="index.css">
+
+    <script src="node_modules\dompurify\dist\purify.js"></script>
+</head>
+
+<body>
+    <h1>Simple Dialogs?</h1>
+    <button type="button" id="alertbtn" value="Click Me">Alert</button>
+    <button type="button" id="cnfrmbtn" value="Confirm Me">Confirm</button>
+    <button type="button" id="prmptbtn" value="Answer Prompt">Prompt</button>
+    <button type="button" id="safeprmptbtn" value="Answer Prompt">Safer Prompt</button>
+
+    <hr>
+    <output id="output"></output>
+
+    <script>
+        function loadHandler() {
+            document.getElementById('alertbtn').addEventListener('click', () => {
+                alert('Alert Provoked!');
+            });
+            document.getElementById('cnfrmbtn').addEventListener('click', confirmHandler);
+            document.getElementById('prmptbtn').addEventListener('click', promptHandler);
+            document.getElementById('safeprmptbtn').addEventListener('click', safePromptHandler);
+        }
+
+        function confirmHandler() {
+            document.getElementById('output').innerHTML = "";
+            let el = confirm('Do you confirm this?');
+            outputHandler(el);
+        }
+
+
+        function outputHandler(el) {
+            if (el) {
+                document.getElementById('output').innerHTML = "Confirm result: " + el;
+            } else {
+                document.getElementById('output').innerHTML = "Confirm result: " + el;
+            }
+        }
+
+        function safePromptHandler() {
+            let el = prompt("What is your name?");
+
+            let sanitizedResult = DOMPurify.sanitize(el);
+
+            if (sanitizedResult == ``) {
+                document.getElementById('output').innerHTML = "User didn't enter anything";
+            }
+            else if (el == null) {
+                document.getElementById('output').innerHTML = "User didn't enter anything";
+            }
+            else {
+                document.getElementById('output').innerHTML = `Prompt result: ${sanitizedResult}`;
+            }
+        }
+
+        function promptHandler() {
+            let el = prompt("What is your name?");
+            promptEmptyHandler(el);
+        }
+
+        function promptEmptyHandler(el) {
+            if (el == ``) {
+                document.getElementById('output').innerHTML = "User didn't enter anything";
+            }
+            else if (el == null) {
+                document.getElementById('output').innerHTML = "User didn't enter anything";
+            }
+            else {
+                document.getElementById('output').innerHTML = "Prompt result: " + el;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', loadHandler);
+    </script>
+</body>
+
+
+</html>
