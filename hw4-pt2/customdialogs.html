@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laura's Personal Portfolio</title>
+    <link rel="icon" href="sakura.png">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.1/purify.min.js"></script>
+</head>
+
+<body style="padding: 20px">
+    <button type="button" id="alertbtn" value="Alert Button">Alert</button>
+    <button type="button" id="confirmbtn" value="Confirm Button">Confirm</button>
+    <button type="button" id="promptbtn" value="Prompt Button">Prompt</button>
+
+    <hr>
+    <output id="output"></output>
+
+    <dialog id="alertDialog">
+        <p>Alert Pressed!</p>
+        <button type="button" id="alertokbtn" value="Alert OK Button">OK</button>
+    </dialog>
+
+    <dialog id="confirmDialog">
+        <p>Do you confirm this?</p>
+        <button id="confirmNo">Cancel</button>
+        <button id="confirmOk">Ok</button>
+    </dialog>
+
+    <dialog id="promptDialog">
+        <form>
+            <label for="name">What is your name?</label><br>
+            <input type="text" id="textVal" name="text"><br>
+        </form>
+        <button id="cancelbtn">Cancel</button>
+        <button id="okbtn">Ok</button>
+    </dialog>
+
+    <script type="module">
+        import { openAlert, closeAlert, openConfirm, closeConfirm, openPrompt, closePrompt } from './customdialogs.js';
+
+        const dialog = document.getElementById('alertDialog');
+        const dialog2 = document.getElementById('confirmDialog');
+        const dialog3 = document.getElementById('promptDialog');
+
+        openAlert(dialog);
+        closeAlert(dialog);
+        openConfirm(dialog2);
+        closeConfirm(dialog2);
+
+        openPrompt(dialog3);
+        closePrompt(dialog3);
+
+
+
+    </script>
+
+
+
+</body>
