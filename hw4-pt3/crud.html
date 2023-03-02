@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laura's Personal Portfolio</title>
+    <link rel="icon" href="sakura.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.1/purify.min.js"></script>
+</head>
+
+<body style="padding: 20px">
+    <button type="button" id="addbtn" value="Add Button">Add Blog Post</button>
+
+
+    <dialog id="newPost">
+        <form>
+            <label for="name">Post Title</label><br>
+            <input type="text" id="postTitle" name="text"><br>
+            <label for="name">Post Date</label><br>
+            <input type="text" id="postDate" name="text"><br>
+            <label for="name">Post Summary</label><br>
+            <input type="text" id="postSumm" name="text"><br>
+        </form>
+        <button id="cancelbtn">Cancel</button>
+        <button id="savebtn">Save</button>
+    </dialog>
+
+    <div id="blogs"></div>
+
+    <script type="module">
+        import { openNewPost, cancelPost, addPost } from './blog.js';
+        const dialog = document.getElementById('newPost');
+
+        const blogArr = [];
+        document.getElementById('blogs').innerHTML = JSON.stringify(blogArr);
+        openNewPost(dialog);
+        cancelPost(dialog);
+        addPost(dialog, blogArr);
+    </script>
+</body>
