@@ -11,6 +11,7 @@
 </head>
 
 <body style="padding: 20px">
+    <h1 class="boldhover">Laura's Blog</h1>
     <button type="button" id="addbtn" value="Add Button">Add Blog Post</button>
 
 
@@ -49,12 +50,14 @@
 
     <script type="module">
         import { openNewPost, cancelPost, addPost, displayAll } from './blog.js';
+        import {changeColor} from './styledcrud.js';
+        changeColor(document.body.style);
         const dialog = document.getElementById('newPost');
         let blogArr = [];
         let items = JSON.parse(localStorage.getItem("blog-array")) || [];
 
         displayAll(items);
-        
+
         openNewPost(dialog);
         cancelPost(dialog);
         addPost(dialog, blogArr, items);

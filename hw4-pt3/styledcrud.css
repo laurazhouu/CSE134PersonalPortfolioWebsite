@@ -18,7 +18,6 @@ button[id^="button"] {
 body {
     padding: 10vw;
     box-sizing: border-box;
-    background-color: aliceblue;
 }
 
 * {
