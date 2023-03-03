@@ -1,5 +1,7 @@
 Changes I made:
+- Firstly, I made some visual changes in the CSS. Firstly, there were some issues with the colors in the navigation bar. Some of my css selectors were overriding the others so I had to change it so only the contact tab was blue. Secondly, there were some issues with responsiveness that I changed: There were some spacing issues for mobile and tablet devices and also the readability of a lot of the text on the buttons was difficult to read so I changed that.
 
 
 
 3rd-Party:
+- As for my 3rd-party changes, I used the Google Maps API to create a display of a map on my homepage. I used this map to show where I was born! The process was pretty difficult, as I had to figure out how to call the API and this included adding HTML and Javascript code, which I included in my index.html file within my body (towards the bottom above the footer). In addition, I had to get a Google Maps API Key, so I had to create a Google Cloud account and enable Google Maps API to get my own user credentials that I used to generate my own copy of the map.
