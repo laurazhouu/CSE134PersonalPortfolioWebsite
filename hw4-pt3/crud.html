@@ -19,7 +19,7 @@
             <label for="name">Post Title</label><br>
             <input type="text" id="postTitle" name="text"><br>
             <label for="name">Post Date</label><br>
-            <input type="text" id="postDate" name="text"><br>
+            <input type="date" id="postDate" name="text"><br>
             <label for="name">Post Summary</label><br>
             <input type="text" id="postSumm" name="text"><br>
         </form>
@@ -27,14 +27,14 @@
         <button id="savebtn">Save</button>
     </dialog>
 
-    
+
 
     <dialog id="editPost">
         <form>
             <label for="name">Post Title</label><br>
             <input type="text" id="postTitle2" name="text"><br>
             <label for="name">Post Date</label><br>
-            <input type="text" id="postDate2" name="text"><br>
+            <input type="date" id="postDate2" name="text"><br>
             <label for="name">Post Summary</label><br>
             <input type="text" id="postSumm2" name="text"><br>
         </form>
@@ -48,16 +48,18 @@
 
 
     <script type="module">
+        // localStorage.clear();
         import { openNewPost, cancelPost, addPost } from './blog.js';
         const dialog = document.getElementById('newPost');
         const blogArr = [];
-        
+        let items = JSON.parse(localStorage.getItem("blog-array")) || [];
+
         openNewPost(dialog, blogArr);
         cancelPost(dialog);
-        addPost(dialog, blogArr);
+        addPost(dialog, blogArr, items);
     </script>
 
-    
+
 
 
 </body>
