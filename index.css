@@ -50,6 +50,7 @@
     flex-direction: row;
 }
 
+
 .home-btn {
     width: min(10vw, 140px);
     height: min(3vw, 42px);
@@ -185,6 +186,11 @@ button:hover {
         align-items: center;
     }
 
+
+    #home-button form button {
+        font-size: 1.4rem;
+    }
+
     #home-section-item {
         padding-bottom: 5vw;
     }
@@ -218,7 +224,6 @@ button:hover {
     .home-grid2 {
         grid-template-rows: 1fr 1fr 1fr;
         grid-template-columns: 1fr;
+        gap: 10vw;
     }
 }
-
-
