@@ -58,7 +58,7 @@ export function addPost(dialog, blogArr, items) {
         localStorage.setItem("blog-array", JSON.stringify(items));
 
 
-        redisplayContent(blogArr, dialog, obj, num, items);
+        redisplayContent(blogArr, obj, num, items);
         dialog.close(dialog);
     });
 
@@ -123,7 +123,7 @@ function editPost(blogArr, num, dialog, items) {
 }
 
 
-function redisplayContent(blogArr, dialog, obj, num, items) {
+function redisplayContent(blogArr, obj, num, items) {
     console.log("redisplay");
     console.log(blogArr);
 
@@ -147,6 +147,15 @@ function redisplayContent(blogArr, dialog, obj, num, items) {
     localStorage.setItem("blog-array", JSON.stringify(items));
 
 }
+
+export function displayAll(items) {
+    for (let i = 0; i < items.length; i++) {
+        redisplayContent([], items[i],items[i].uuid,items);
+    }
+}
+
+
+
 
 
 
