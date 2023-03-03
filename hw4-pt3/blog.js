@@ -47,70 +47,87 @@ export function readFormData2() {
 export function addPost(dialog, blogArr) {
     const okButton = document.getElementById('savebtn');
     console.log("addpost entered");
-    
+
     okButton.addEventListener("click", () => {
         let obj = readFormData();
+        let num = Math.random().toString(16).slice(2);
+        obj.uuid = "id" + num;
         blogArr.push(obj);
-        redisplayContent(blogArr, dialog);
+
+        redisplayContent(blogArr, dialog, obj, num);
         dialog.close(dialog);
     });
 
 }
 
-function delPost(blogArr, i) {
+function delPost(blogArr, num) {
     console.log("delpost entered");
-    if (blogArr.length == 1) {
-        blogArr.length = 0;
-    } else {
-        blogArr.splice(i, 1);
-    }
 
-    document.getElementById(`blogentry${i}`).remove()
+    let index = -1;
+    for (let i = 0; i < blogArr.length; i++) {
+        if (blogArr.uuid === num) {
+            index = i;
+        }
+    }
+    blogArr.splice(index, 1);
+
+
+    document.getElementById(`blogentry${num}`).remove()
     console.log(blogArr);
 }
 
-function editPost(blogArr, i, dialog) {
+function editPost(blogArr, num, dialog) {
     console.log('editpost entered');
     dialog.show();
+    
     const editButton = document.getElementById('savebtn2');
     editButton.addEventListener("click", () => {
         let obj = readFormData2();
         console.log(obj);
         dialog.close();
-        blogArr[i]['title'] = obj['title'];
-        blogArr[i]['date'] = obj['date'];
-        blogArr[i]['summary'] = obj['summary'];
-        document.getElementById(`title${i}`).innerHTML = `<h3>${blogArr[i]['title']}</h3>`;
-        document.getElementById(`date${i}`).innerHTML = `<h4>${blogArr[i]['date']}</h4>`;
-        document.getElementById(`summary${i}`).innerHTML = `<p>${blogArr[i]['summary']}</p>`;
+
+        let editPost = {
+            title: obj.title,
+            date: obj.date,
+            summary: obj.summary,
+            uuid: num
+        }
+
+        let index = -1;
+        for (let i = 0; i < blogArr.length; i++) {
+            if (blogArr.uuid === num) {
+                index = i;
+            }
+        }
+        
+        blogArr[index] = editPost;
+        document.getElementById(`title${num}`).innerHTML = `<h3>${obj.title}</h3>`;
+        document.getElementById(`date${num}`).innerHTML = `<h4>${obj.date}</h4>`;
+        document.getElementById(`summary${num}`).innerHTML = `<p>${obj.summary}</p>`;
     });
 }
 
 
-function redisplayContent(blogArr, dialog) {
+function redisplayContent(blogArr, dialog, obj, num) {
     console.log("redisplay");
     console.log(blogArr);
 
-    document.getElementById('blogs').innerHTML = "";
-    for (let i = 0; i < blogArr.length; i++) {
+    let blogEntry = document.createElement('div');
+    document.getElementById('blogs').appendChild(blogEntry);
+    blogEntry.innerHTML = `<h3 id="title${num}">${obj.title}</h3>
+                                <h4 id="date${num}">${obj.date}</h4>
+                                <p id="summary${num}">${obj.summary}</p>
+                                <button id="button${num}">DELETE</button>
+                                <button id="ebutton${num}">EDIT</button>`;
+    blogEntry.id = `blogentry${num}`;
 
-        let blogEntry = document.createElement('div');
-        document.getElementById('blogs').appendChild(blogEntry);
-        blogEntry.innerHTML = `<h3 id="title${i}">${blogArr[i]['title']}</h3>
-                                <h4 id="date${i}">${blogArr[i]['date']}</h4>
-                                <p id="summary${i}">${blogArr[i]['summary']}</p>
-                                <button id="button${i}">DELETE</button>
-                                <button id="ebutton${i}">EDIT</button>`;
-        blogEntry.id = `blogentry${i}`;
+    document.getElementById(`button${num}`).addEventListener("click", () => {
+        delPost(blogArr, num);
+    });
 
-        document.getElementById(`button${i}`).addEventListener("click", () => {
-            delPost(blogArr, i);
-        });
-
-        document.getElementById(`ebutton${i}`).addEventListener("click", () => {
-            editPost(blogArr, i, document.getElementById('editPost'));
-        });
-    }
+    document.getElementById(`ebutton${num}`).addEventListener("click", () => {
+        editPost(blogArr, num, document.getElementById('editPost'));
+    });
 
 }
 
