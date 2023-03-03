@@ -7,8 +7,6 @@ export function openPrompt(dialog) {
 }
 
 export function closePrompt(dialog) {
-
-
     const confirmBtn = document.getElementById('okbtn');
     const cancelBtn = document.getElementById('cancelbtn');
     confirmBtn.addEventListener("click", () => {

@@ -1,0 +1,8 @@
+.blogPost {
+    padding: 20px;
+    ;
+}
+
+div[class^="blogPost"] {
+    padding: 20px;
+}
