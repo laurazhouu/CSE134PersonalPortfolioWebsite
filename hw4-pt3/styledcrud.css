@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,600;0,800;0,900;1,600;1,700;1,800;1,900&display=swap');
+
+
+div[id^="blogentry"] {
+    padding: 5vw;
+    background-color: lightblue;
+    border-radius: 1vw;
+    margin: 5vw 0;
+}
+
+button[id^="button"] {
+    margin-right: 2vw;
+
+}
+
+
+
+body {
+    padding: 10vw;
+    box-sizing: border-box;
+    background-color: aliceblue;
+}
+
+* {
+
+    font-family: 'Manrope', sans-serif;
+}
+
+.boldhover {
+    text-align: center;
+    animation-name: colorchange;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes colorchange {
+    0% {
+        color: var(blue);
+    }
+
+    25% {
+        color: var(red);
+    }
+
+    50% {
+        color: var(green);
+    }
+
+    100% {
+        color: var(black);
+    }
+}
+
+#addbtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 5vw;
+    background-color: lightgray;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+#addbtn:hover {
+    background-color: darkcyan;
+
+}
+
+button {
+    cursor: pointer;
+}
+
+dialog {
+    padding: 2vw 10vw;
+    box-sizing: border-box;
+    border-radius: 2vw;
+    border: 1px solid black;
+    z-index: 1;
+}
+
+dialog + form {
+    margin: 1vw 0;
+}
+dialog form > * {
+    margin: 1vw 0;
+}
