@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Poppins:ital,wght@0,600;0,800;0,900;1,600;1,700;1,800;1,900&display=swap');
+
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    margin: 1vw 1vw;
+    padding: 1vw 1vw;
+    background-color: blue;
+    color: white;
+    border-radius: 1vw;
+    border: none;
+    cursor: pointer;
+}
+
+body {
+    margin: 5vw;
+    box-sizing: border-box;
+}
+
+form {
+    align-items: center;
+    border: 1px solid black;
+    padding: 3vw;
+    ;
+    border-radius: 1vw;
+    width: fit-content;
+    text-align: center;
+}
+
+form input {
+    background-color: rgb(207, 207, 207);
+    border: none;
+    border-radius: 1vw;
+    width: 100%;
+    margin-bottom: 1vw;
+}
+
+form textarea {
+    background-color: rgb(207, 207, 207);
+    border: none;
+    border-radius: 1vw;
+    margin-bottom: 1vw;
+    width: 100%;
+}
+
+#date {
+    font-size: 0.8rem;
+}
+
+pre {
+    width: 100%;
+    font-size: 0.7rem;
+}

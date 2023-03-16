@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laura's Personal Portfolio</title>
+    <link rel="icon" href="sakura.png">
+    <link rel="stylesheet" href="methodtest.css">
+
+</head>
+
+
+<body>
+    <h1>Method Test</h1>
+    <form name='form1' id="form1">
+        <label for="id">
+            ID<br>
+            <input type="number" name="id" id="id">
+        </label>
+        <br>
+
+        <label for="article_name">
+            Article Name<br>
+            <input type="text" name="article_name" id="article_name">
+        </label>
+        <br>
+
+        <label for="article_body">
+            Article Body<br>
+            <textarea name="article_body" id="article_body" rows="10"></textarea>
+        </label>
+        <br>
+
+        <div id="date"></div>
+
+    </form>
+
+    <button id="postBtn" name='postBtn' type="submit" form="form">postBtn</button>
+    <button id="getBtn" type="submit">getBtn</button>
+    <button id="putBtn">putBtn</button>
+    <button id="deleteBtn">deleteBtn</button>
+
+    <br>
+    <output id="response">
+    </output>
+
+
+    <script>
+        const getFormData = () => {
+            return {
+                id: document.getElementById('id').value,
+                articleName: document.getElementById('article_name').value,
+                articleBody: document.getElementById('article_body').value,
+            }
+        }
+
+        const post = async () => {
+            let result = await fetch('https://httpbin.org/post', { method: 'POST', body: JSON.stringify(getFormData()) })
+            result = await result.json();
+            result = JSON.stringify(result, null, '\t');
+            document.getElementById('response').innerHTML = `<pre>${result}</pre>`;
+        }
+
+        const put = async () => {
+            let result = await fetch('https://httpbin.org/put', { method: 'PUT', body: JSON.stringify(getFormData()) })
+            result = await result.json();
+            result = JSON.stringify(result, null, '\t');
+            document.getElementById('response').innerHTML = `<pre>${result}</pre>`;
+        }
+
+        const del = async () => {
+            let result = await fetch('https://httpbin.org/delete', { method: 'DELETE', body: JSON.stringify(getFormData()) })
+            result = await result.json();
+            result = JSON.stringify(result, null, '\t');
+            document.getElementById('response').innerHTML = `<pre>${result}</pre>`;
+        }
+
+        document.getElementById('getBtn').addEventListener("click", () => {
+            var request = new XMLHttpRequest();
+            request.open('GET', 'https://httpbin.org/get', true);
+            request.onload = function () {
+                if (request.status >= 200 && request.status < 400) {
+                    document.getElementById('response').innerHTML = `<pre>${request.responseText}</pre>`;
+                }
+            };
+            request.send();
+        });
+
+        document.getElementById('postBtn').addEventListener("click", (event) => {
+            event.preventDefault();
+            post();
+        });
+
+        document.getElementById('putBtn').addEventListener("click", (event) => {
+            event.preventDefault();
+            put();
+        });
+
+        document.getElementById('deleteBtn').addEventListener("click", (event) => {
+            event.preventDefault();
+            del();
+        });
+
+        const d = new Date();
+        document.getElementById('date').innerHTML = d;
+
+    </script>
+
+</body>
